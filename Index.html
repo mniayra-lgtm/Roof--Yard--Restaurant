@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roof Yard Restaurant</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:#0b0b0b;
+color:white;
+}
+
+header{
+padding:60px;
+text-align:center;
+background:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),
+url('https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba') center/cover;
+}
+
+h1{
+font-size:3rem;
+color:#ff4d2d;
+}
+
+.btn{
+display:inline-block;
+padding:10px 15px;
+margin:5px;
+background:#ff4d2d;
+color:white;
+text-decoration:none;
+border-radius:6px;
+}
+
+.container{
+padding:40px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:15px;
+}
+
+.card{
+background:#1a1a1a;
+padding:15px;
+border-radius:10px;
+border:1px solid #333;
+}
+
+button{
+padding:8px;
+margin-top:10px;
+width:100%;
+background:#ff4d2d;
+border:none;
+color:white;
+cursor:pointer;
+}
+
+#cart{
+background:#111;
+padding:20px;
+margin-top:30px;
+border-radius:10px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>ROOF YARD</h1>
+<p>Rooftop • Fast Food • Desi • BBQ</p>
+
+<a class="btn" href="#menu">View Menu</a>
+<a class="btn" href="https://wa.me/923196639273">WhatsApp</a>
+<a class="btn" href="tel:+923196639273">Call</a>
+</header>
+
+<div class="container">
+
+<h2>🍔 Menu</h2>
+
+<div class="grid">
+
+<div class="card">
+<h3>Honey Garlic Wings</h3>
+<p>Rs 520</p>
+<button onclick="add('Honey Garlic Wings',520)">Add to Cart</button>
+</div>
+
+<div class="card">
+<h3>Pizza Fries</h3>
+<p>Rs 390</p>
+<button onclick="add('Pizza Fries',390)">Add to Cart</button>
+</div>
+
+<div class="card">
+<h3>Zinger Burger</h3>
+<p>Rs 499</p>
+<button onclick="add('Zinger Burger',499)">Add to Cart</button>
+</div>
+
+<div class="card">
+<h3>Chicken Karahi</h3>
+<p>Rs 1550</p>
+<button onclick="add('Chicken Karahi',1550)">Add to Cart</button>
+</div>
+
+<div class="card">
+<h3>BBQ Platter</h3>
+<p>Rs 2600</p>
+<button onclick="add('BBQ Platter',2600)">Add to Cart</button>
+</div>
+
+</div>
+
+<div id="cart">
+<h2>🛒 Cart</h2>
+<div id="items"></div>
+<h3 id="total"></h3>
+
+<button onclick="order()">Place Order on WhatsApp</button>
+</div>
+
+</div>
+
+<script>
+
+let cart = [];
+
+function add(name,price){
+cart.push({name,price});
+render();
+}
+
+function render(){
+let html="";
+let total=0;
+
+cart.forEach(item=>{
+html+=item.name+" - Rs "+item.price+"<br>";
+total+=item.price;
+});
+
+document.getElementById("items").innerHTML=html;
+document.getElementById("total").innerText="Total: Rs "+total;
+}
+
+function order(){
+let msg="Hello Roof Yard I want to order:%0A";
+
+cart.forEach(i=>{
+msg+=i.name+" - Rs "+i.price+"%0A";
+});
+
+let url="https://wa.me/923196639273?text="+msg;
+window.open(url,"_blank");
+}
+
+</script>
+
+</body>
+</html
